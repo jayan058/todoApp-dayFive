@@ -7,7 +7,7 @@ import todoRoute from "../../router/todos";
 import * as userModels from "../../models/users";
 import * as todosModels from "../../models/todos";
 import expect from "expect";
-
+import config from "../../config";
 const app = express();
 app.use(express.json());
 app.use("/todos", todoRoute);
@@ -26,7 +26,7 @@ describe("Todos Routes Integration Tests", () => {
 
     token = jwt.sign(
       { id: user.id, name: user.name, email: user.email, permission: ["user"] },
-      "todoSecretKey",
+      config.jwt.jwt_secret,
       { expiresIn: "1h" }
     );
 
