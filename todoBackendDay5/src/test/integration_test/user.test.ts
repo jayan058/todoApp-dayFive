@@ -48,7 +48,6 @@ describe("User Routes Integration Tests", () => {
       .post("/user")
       .set("Authorization", `Bearer ${token}`)
       .send({
-        id: string,
         password: "newpassword",
         email: "newuser@example.com",
         name: "new user",
@@ -69,7 +68,7 @@ describe("User Routes Integration Tests", () => {
   });
 
   it("should update a user", async () => {
-    const user = userModels.findUserByEmail("jayan@jayan.com");
+    const user = userModels.findUserByEmail("newuser@example.com");
 
     const response = await request(app)
       .put(`/user/${user.id}`)
