@@ -7,6 +7,7 @@ import { BCRYPT_SALT_ROUNDS } from "../../constants";
 import bcrypt from "bcrypt";
 import expect from "expect";
 import { string } from "joi";
+import config from "../../config";
 const app = express();
 app.use(express.json());
 app.use("/user", userRoute);
@@ -29,7 +30,7 @@ describe("User Routes Integration Tests", () => {
         password: "newpassword",
         permission: ["super admin"],
       },
-      "todoSecretKey",
+      config.jwt.jwt_secret,
       { expiresIn: "1h" }
     );
   });
